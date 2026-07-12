@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign in — ProHealth Patient Management</title>
+  <meta name="description"
+    content="Sign in to ProHealth — your partner in health and wellness. Manage appointments, records, and billing.">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+
+  <div class="login-shell">
+
+    <section class="login-side" aria-hidden="true">
+      <div class="mark-row">
+        <svg class="mark" viewBox="0 0 32 32" fill="none">
+          <path d="M16 3 4 8v8c0 8 5.2 13.4 12 17 6.8-3.6 12-9 12-17V8L16 3Z" stroke="currentColor" stroke-width="1.6"
+            stroke-linejoin="round" />
+          <path d="M16 12v9M11.5 16.5h9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+        </svg>
+        <span>ProHealth</span>
+      </div>
+      <h1>Your Partner in<br>Health and Wellness</h1>
+      <p class="side-copy">We are committed to providing you with the best medical and healthcare services to help you
+        live healthier and happier.</p>
+
+      <div class="pulse-block" data-vitals-strip></div>
+
+      <div class="side-stats">
+        <div class="side-stat"><span class="stat-num">870+</span><span class="stat-label">Doctors</span></div>
+        <div class="side-stat"><span class="stat-num">150K+</span><span class="stat-label">Patient Recover</span></div>
+        <div class="side-stat"><span class="stat-num">95%</span><span class="stat-label">Satisfaction</span></div>
+      </div>
+
+      <ul class="side-points">
+        <li>Same-day appointment booking across 5 departments</li>
+        <li>Encrypted medical records, accessible only to your care team</li>
+        <li>Lab results and invoices the moment they're ready</li>
+      </ul>
+    </section>
+
+    <section class="login-main">
+      <div class="login-card card">
+        <h2>Welcome back</h2>
+        <p class="lead">Sign in to continue to your dashboard.</p>
+
+        <div class="role-tabs" role="tablist" aria-label="Sign in as">
+          <button type="button" class="role-tab active" data-role="patient" role="tab"
+            aria-selected="true">Patient</button>
+          <button type="button" class="role-tab" data-role="doctor" role="tab" aria-selected="false">Doctor</button>
+          <button type="button" class="role-tab" data-role="admin" role="tab"
+            aria-selected="false">Administrator</button>
+        </div>
+
+        <form id="login-form" novalidate>
+          <div class="field" id="field-email">
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email" autocomplete="username" placeholder="you@prohealth.lk">
+            <p class="error" role="alert">Enter the email address for this account.</p>
+          </div>
+
+          <div class="field" id="field-password">
+            <label for="password">Password</label>
+            <div class="password-row">
+              <input type="password" id="password" name="password" autocomplete="current-password"
+                placeholder="••••••••">
+              <button type="button" class="show-pass" id="toggle-pass" aria-pressed="false">Show</button>
+            </div>
+            <p class="error" role="alert">Enter your password.</p>
+          </div>
+
+          <div class="row-between">
+            <label class="check-row"><input type="checkbox" id="remember"> Keep me signed in</label>
+            <a href="#" id="forgot-link">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+        </form>
+
+        <div class="demo-creds" id="demo-creds">
+          <p class="demo-title">Demo credentials — click to autofill</p>
+          <button type="button" class="cred" data-email="patient@medicore.lk" data-password="patient123">
+            <span class="badge badge-neutral">Patient</span> patient@medicore.lk / patient123
+          </button>
+          <button type="button" class="cred" data-email="doctor@medicore.lk" data-password="doctor123">
+            <span class="badge badge-neutral">Doctor</span> doctor@medicore.lk / doctor123
+          </button>
+          <button type="button" class="cred" data-email="admin@medicore.lk" data-password="admin123">
+            <span class="badge badge-neutral">Admin</span> admin@medicore.lk / admin123
+          </button>
+        </div>
+
+        <p class="signup-hint">New patient? <a href="#" id="register-link">Register in under two minutes</a></p>
+      </div>
+    </section>
+  </div>
+
+  <!-- Register dialog -->
+  <dialog id="register-dialog">
+    <form id="register-form" novalidate>
+      <h2>Patient registration</h2>
+      <p class="lead">Create an account to book appointments and view your records.</p>
+      <div class="field"><label for="r-name">Full name</label><input type="text" id="r-name"
+          placeholder="As per NIC / passport">
+        <p class="error">Enter your full name.</p>
+      </div>
+      <div class="field"><label for="r-email">Email address</label><input type="email" id="r-email"
+          placeholder="you@example.com">
+        <p class="error">Enter a valid email address.</p>
+      </div>
+      <div class="field"><label for="r-phone">Mobile number</label><input type="tel" id="r-phone"
+          placeholder="07X XXX XXXX">
+        <p class="error">Enter a valid mobile number.</p>
+      </div>
+      <div class="field"><label for="r-password">Password</label><input type="password" id="r-password"
+          placeholder="At least 8 characters">
+        <p class="error">Password must be at least 8 characters.</p>
+      </div>
+      <div class="dialog-actions">
+        <button type="button" class="btn btn-ghost" id="register-cancel">Cancel</button>
+        <button type="submit" class="btn btn-primary">Create account</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toast-region" aria-live="polite"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/login.js"></script>
+</body>
+
+</html>

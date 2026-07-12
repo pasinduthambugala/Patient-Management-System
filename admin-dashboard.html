@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin dashboard — MediCore</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/admin-dashboard.css">
+</head>
+<body>
+<div class="app-shell">
+
+  <aside class="app-sidebar">
+    <div class="brand">
+      <svg class="mark" viewBox="0 0 32 32" fill="none"><path d="M16 3 4 8v8c0 8 5.2 13.4 12 17 6.8-3.6 12-9 12-17V8L16 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M16 12v9M11.5 16.5h9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <span>MediCore</span>
+    </div>
+
+    <div>
+      <p class="sidebar-section-label">Main menu</p>
+      <nav class="app-nav" aria-label="Primary">
+        <a href="admin-dashboard.html" class="active" id="nav-overview">
+          <svg viewBox="0 0 20 20" fill="none"><path d="M3 10.5 10 4l7 6.5M5 9v7h10V9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Overview
+        </a>
+        <a href="admin-dashboard.html#patients" data-tab-link="patients" id="nav-patients">
+          <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="6.5" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M4 17c.6-3.6 3.4-5.5 6-5.5s5.4 1.9 6 5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Patients
+        </a>
+        <a href="admin-dashboard.html#doctors" data-tab-link="doctors" id="nav-doctors">
+          <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="6.5" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M4 17c.6-3.6 3.4-5.5 6-5.5s5.4 1.9 6 5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Doctors
+        </a>
+        <a href="admin-dashboard.html#appointments" data-tab-link="appointments" id="nav-appointments">
+          <svg viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="13" rx="1.6" stroke="currentColor" stroke-width="1.6"/><path d="M3 8h14M7 2.5v3M13 2.5v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Appointments
+        </a>
+        <a href="admin-dashboard.html#billing" data-tab-link="billing" id="nav-billing">
+          <svg viewBox="0 0 20 20" fill="none"><rect x="2.5" y="5" width="15" height="10" rx="1.6" stroke="currentColor" stroke-width="1.6"/><path d="M2.5 8.5h15" stroke="currentColor" stroke-width="1.6"/></svg>Billing
+        </a>
+      </nav>
+    </div>
+
+    <div class="sidebar-foot">
+      <div class="sidebar-profile">
+        <div class="sidebar-avatar" id="sidebar-avatar-initials">—</div>
+        <div class="sidebar-profile-info">
+          <strong id="who-name">—</strong>
+          <span class="role-tag" id="who-role">Admin</span>
+        </div>
+      </div>
+      <button class="btn btn-secondary btn-block" id="logout-btn">Sign out</button>
+    </div>
+  </aside>
+
+  <main class="app-main">
+    <div class="app-topbar">
+      <div>
+        <h1 id="greeting">Hospital overview</h1>
+        <p class="sub" id="topbar-sub">Live snapshot of hospital activity</p>
+      </div>
+    </div>
+
+    <div class="stat-grid">
+      <div class="card stat-card"><div class="num" id="stat-patients">0</div><div class="label">Registered patients</div><div class="delta up">↑ new this month</div></div>
+      <div class="card stat-card"><div class="num" id="stat-doctors">0</div><div class="label">Active doctors</div></div>
+      <div class="card stat-card"><div class="num" id="stat-today">0</div><div class="label">Appointments today</div></div>
+      <div class="card stat-card"><div class="num" id="stat-revenue">LKR 0</div><div class="label">Revenue collected</div><div class="delta up">↑ paid invoices</div></div>
+    </div>
+
+    <div data-vitals-strip class="strip-divider"></div>
+
+    <div class="dash-grid">
+      <section class="card panel">
+        <div class="section-head"><h2>Appointments by department</h2></div>
+        <div id="dept-chart" class="bar-chart"></div>
+      </section>
+      <section class="card panel">
+        <div class="section-head"><h2>Appointment status</h2></div>
+        <div id="status-chart" class="status-chart"></div>
+      </section>
+    </div>
+
+    <section class="card panel" id="appointments">
+      <div class="section-head">
+        <h2>Appointment requests</h2>
+        <input type="text" id="appt-search" placeholder="Search patient or doctor…" class="table-search">
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>ID</th><th>Patient</th><th>Doctor</th><th>Date</th><th>Time</th><th>Status</th><th>Action</th></tr></thead>
+          <tbody id="appt-table-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card panel" id="patients">
+      <div class="section-head">
+        <h2>Recent patients</h2>
+        <button class="btn btn-primary" id="add-patient-btn">Add Patient</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Phone</th></tr></thead>
+          <tbody id="patients-table-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card panel" id="doctors">
+      <div class="section-head">
+        <h2>Active doctors</h2>
+        <button class="btn btn-primary" id="add-doctor-btn">Add Doctor</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Department</th></tr></thead>
+          <tbody id="doctors-table-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card panel" id="billing">
+      <div class="section-head"><h2>Recent invoices</h2></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Invoice</th><th>Patient</th><th>Description</th><th>Amount</th><th>Status</th></tr></thead>
+          <tbody id="invoices-table-body"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div id="toast-region" aria-live="polite"></div>
+
+<!-- Add Patient Modal -->
+<div id="patient-modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Add New Patient</h2>
+      <button class="modal-close" id="close-patient-modal">&times;</button>
+    </div>
+    <form id="patient-form">
+      <div class="form-group">
+        <label for="patient-name">Full Name</label>
+        <input type="text" id="patient-name" required>
+      </div>
+      <div class="form-group">
+        <label for="patient-email">Email</label>
+        <input type="email" id="patient-email" required>
+      </div>
+      <div class="form-group">
+        <label for="patient-password">Password</label>
+        <input type="password" id="patient-password" required>
+      </div>
+      <div class="form-group">
+        <label for="patient-dob">Date of Birth</label>
+        <input type="date" id="patient-dob" required>
+      </div>
+      <div class="form-group">
+        <label for="patient-phone">Phone Number</label>
+        <input type="tel" id="patient-phone" required>
+      </div>
+      <div class="form-actions">
+        <button type="button" class="btn btn-secondary" id="cancel-patient">Cancel</button>
+        <button type="submit" class="btn btn-primary">Add Patient</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Add Doctor Modal -->
+<div id="doctor-modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Add New Doctor</h2>
+      <button class="modal-close" id="close-doctor-modal">&times;</button>
+    </div>
+    <form id="doctor-form">
+      <div class="form-group">
+        <label for="doctor-name">Full Name</label>
+        <input type="text" id="doctor-name" required>
+      </div>
+      <div class="form-group">
+        <label for="doctor-email">Email</label>
+        <input type="email" id="doctor-email" required>
+      </div>
+      <div class="form-group">
+        <label for="doctor-password">Password</label>
+        <input type="password" id="doctor-password" required>
+      </div>
+      <div class="form-group">
+        <label for="doctor-dept">Department</label>
+        <select id="doctor-dept" required>
+          <option value="">Select Department</option>
+          <option value="Cardiology">Cardiology</option>
+          <option value="Dermatology">Dermatology</option>
+          <option value="Orthopedics">Orthopedics</option>
+          <option value="Pediatrics">Pediatrics</option>
+          <option value="General Medicine">General Medicine</option>
+        </select>
+      </div>
+      <div class="form-actions">
+        <button type="button" class="btn btn-secondary" id="cancel-doctor">Cancel</button>
+        <button type="submit" class="btn btn-primary">Add Doctor</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/admin-dashboard.js"></script>
+</body>
+</html>

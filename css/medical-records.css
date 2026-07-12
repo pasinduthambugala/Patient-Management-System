@@ -1,0 +1,31 @@
+.tabs{ display:flex; gap:.4rem; border-bottom:1px solid var(--line); margin-bottom:1.4rem; }
+.tab{
+  background:none; border:none; padding:.8em 1.1em; font-weight:700; font-size:.9rem; color:var(--ink-soft);
+  cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-1px;
+}
+.tab.active{ color:var(--teal-700); border-bottom-color:var(--teal-700); }
+
+.table-search{ max-width:260px; }
+
+.records-list{ display:flex; flex-direction:column; gap:.9rem; }
+.record-card{
+  background:var(--paper-raised); border:1px solid var(--line); border-radius:var(--radius-md);
+  padding:1.1rem 1.3rem; display:flex; align-items:center; gap:1.2rem; cursor:pointer; transition:box-shadow .15s ease;
+}
+.record-card:hover{ box-shadow:var(--shadow-2); }
+.record-icon{
+  width:44px; height:44px; border-radius:10px; background:var(--sage-100); color:var(--teal-700);
+  display:flex; align-items:center; justify-content:center; font-size:1.3rem; flex-shrink:0;
+}
+.record-main{ flex:1; min-width:0; }
+.record-main .title{ font-weight:700; font-size:.98rem; }
+.record-main .meta{ font-size:.82rem; color:var(--ink-soft); margin-top:.15rem; }
+.record-date{ font-family:var(--font-mono); font-size:.78rem; color:var(--ink-soft); white-space:nowrap; }
+
+#record-dialog{ border:none; border-radius:var(--radius-lg); padding:2rem; max-width:480px; width:92%; box-shadow:var(--shadow-2); }
+#record-dialog::backdrop{ background:rgba(11,59,52,.45); }
+.rx-table{ width:100%; margin-top:.8rem; font-size:.85rem; }
+.rx-table th{ font-size:.68rem; }
+.result-row{ display:flex; justify-content:space-between; padding:.5em 0; border-bottom:1px solid var(--line); font-size:.88rem; }
+.result-row:last-child{ border-bottom:none; }
+.result-range{ color:var(--ink-soft); font-family:var(--font-mono); font-size:.76rem; }
