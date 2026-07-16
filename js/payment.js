@@ -8,6 +8,7 @@
 
   let selectedInvoiceId = null;
 
+  // Function to render invoices and payment history
   function render(){
     const db = DataStore.load();
     const myInvoices = db.invoices.filter(i => i.patientId === user.id).sort((a,b) => b.date.localeCompare(a.date));
@@ -36,6 +37,7 @@
     }).join('') || `<tr><td colspan="5">No payments made yet.</td></tr>`;
   }
 
+  // Function to select an invoice for payment
   function selectInvoice(id){
     selectedInvoiceId = id;
     const db = DataStore.load();
@@ -61,6 +63,7 @@
 
   document.getElementById('cvv').addEventListener('input', (e) => { e.target.value = e.target.value.replace(/\D/g,'').slice(0,3); });
 
+  // Function to set invalid state on form fields
   function setInvalid(fieldId, invalid){ document.getElementById(fieldId).classList.toggle('invalid', invalid); }
 
   document.getElementById('payment-form').addEventListener('submit', (e) => {

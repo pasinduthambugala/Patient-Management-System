@@ -20,6 +20,7 @@
   });
   if(location.hash === '#labs') document.querySelector('.tab[data-tab="labs"]').click();
 
+  // Function to render medical records with optional filter
   function renderRecords(filter){
     const rows = myRecords.filter(r => !filter || r.diagnosis.toLowerCase().includes(filter) || r.doctor.toLowerCase().includes(filter));
     document.getElementById('records-list').innerHTML = rows.map(r => `
@@ -40,6 +41,7 @@
     });
   }
 
+  // Function to render lab reports list
   function renderLabs(){
     document.getElementById('labs-list').innerHTML = myLabs.map(l => `
       <div class="record-card" data-lab="${l.id}" tabindex="0" role="button" aria-label="View lab report ${l.test}">
@@ -61,6 +63,7 @@
   const dialog = document.getElementById('record-dialog');
   document.getElementById('record-close').addEventListener('click', () => dialog.close());
 
+  // Function to show detailed medical record in dialog
   function showRecordDetail(r){
     document.getElementById('record-dialog-body').innerHTML = `
       <h2>${r.diagnosis}</h2>
@@ -73,6 +76,7 @@
     dialog.showModal();
   }
 
+  // Function to show detailed lab report in dialog
   function showLabDetail(l){
     const body = l.status === 'ready'
       ? l.results.map(r => `<div class="result-row"><span>${r.name}</span><span>${r.value} <span class="result-range">(${r.range})</span></span></div>`).join('')

@@ -10,13 +10,17 @@
 <link rel="stylesheet" href="css/payment.css">
 </head>
 <body>
+<!-- Main application shell container -->
 <div class="app-shell">
 
+  <!-- Sidebar navigation -->
   <aside class="app-sidebar">
+    <!-- Brand logo section -->
     <div class="brand">
       <svg class="mark" viewBox="0 0 32 32" fill="none"><path d="M16 3 4 8v8c0 8 5.2 13.4 12 17 6.8-3.6 12-9 12-17V8L16 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M16 12v9M11.5 16.5h9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
       <span>MediCore</span>
     </div>
+    <!-- Main navigation menu -->
     <div>
       <p class="sidebar-section-label">Main menu</p>
       <nav class="app-nav" aria-label="Primary">
@@ -26,6 +30,7 @@
         <a href="payment.html" class="active"><svg viewBox="0 0 20 20" fill="none"><rect x="2.5" y="5" width="15" height="10" rx="1.6" stroke="currentColor" stroke-width="1.6"/><path d="M2.5 8.5h15" stroke="currentColor" stroke-width="1.6"/></svg>Payments</a>
       </nav>
     </div>
+    <!-- Sidebar footer with user profile -->
     <div class="sidebar-foot">
       <div class="sidebar-profile">
         <div class="sidebar-avatar" id="sidebar-avatar-initials">—</div>
@@ -38,21 +43,27 @@
     </div>
   </aside>
 
+  <!-- Main content area -->
   <main class="app-main">
+    <!-- Top bar with page title -->
     <div class="app-topbar">
       <div><h1>Payments</h1><p class="sub">Settle outstanding invoices and review your payment history.</p></div>
       <div class="due-pill">Outstanding: <strong id="due-total">LKR 0</strong></div>
     </div>
 
+    <!-- Payment grid with invoices and form -->
     <div class="pay-grid">
+      <!-- Outstanding invoices section -->
       <section class="card panel">
         <div class="section-head"><h2>Outstanding invoices</h2></div>
         <div id="invoice-list" class="invoice-list"></div>
       </section>
 
+      <!-- Payment form section -->
       <section class="card panel pay-form-panel">
         <h2>Pay invoice</h2>
         <p class="lead" id="pay-target-label">Select an invoice to pay.</p>
+        <!-- Payment form -->
         <form id="payment-form" novalidate>
           <div class="field" id="field-card-name">
             <label for="card-name">Name on card</label>
@@ -82,6 +93,7 @@
       </section>
     </div>
 
+    <!-- Payment history section -->
     <section class="card panel">
       <div class="section-head"><h2>Payment history</h2></div>
       <div class="table-wrap">
@@ -94,6 +106,7 @@
   </main>
 </div>
 
+<!-- Payment receipt dialog -->
 <dialog id="receipt-dialog">
   <div class="receipt-check">✓</div>
   <h2>Payment successful</h2>
@@ -101,6 +114,7 @@
   <button class="btn btn-primary btn-block" id="receipt-close">Done</button>
 </dialog>
 
+<!-- Toast notification region -->
 <div id="toast-region" aria-live="polite"></div>
 
 <script src="js/data.js"></script>

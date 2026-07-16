@@ -33,6 +33,7 @@
     });
   });
 
+  // Function to set invalid state on form fields
   function setInvalid(fieldId, invalid){
     document.getElementById(fieldId).classList.toggle('invalid', invalid);
   }

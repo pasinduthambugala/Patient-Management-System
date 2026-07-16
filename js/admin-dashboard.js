@@ -33,6 +33,7 @@
   let db = DataStore.load();
   const today = '2026-07-02';
 
+  // Function to render the dashboard with all data
   function render(){
     db = DataStore.load();
     const patients = db.users.filter(u => u.role === 'patient');
@@ -86,6 +87,7 @@
     }).join('');
   }
 
+  // Function to render the appointment table with optional filter
   function renderApptTable(filter){
     const rows = db.appointments.filter(a => !filter || a.patient.toLowerCase().includes(filter) || a.doctor.toLowerCase().includes(filter));
     document.getElementById('appt-table-body').innerHTML = rows.map(a => `
@@ -139,7 +141,7 @@
     doctorModal.classList.add('active');
   });
 
-  // Close modals
+  // Function to close all modal dialogs
   function closeAllModals() {
     patientModal.classList.remove('active');
     doctorModal.classList.remove('active');

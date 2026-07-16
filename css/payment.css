@@ -1,35 +1,55 @@
+/* Due amount pill styling */
 .due-pill{
   background:var(--coral-100); color:var(--coral); font-weight:700; font-size:.85rem;
   padding:.55em 1em; border-radius:99px;
 }
+/* Due amount text */
 .due-pill strong{ font-family:var(--font-mono); }
 
+/* Payment grid layout */
 .pay-grid{ display:grid; grid-template-columns:1.2fr 1fr; gap:1.4rem; align-items:start; margin-bottom:1.6rem; }
 @media (max-width:1000px){ .pay-grid{ grid-template-columns:1fr; } }
 
+/* Invoice list container */
 .invoice-list{ display:flex; flex-direction:column; gap:.8rem; }
+/* Invoice row styling */
 .invoice-row{
   display:flex; align-items:center; gap:1rem; padding:1rem 1.1rem; border:1.5px solid var(--line);
   border-radius:var(--radius-md); cursor:pointer; transition:border-color .15s ease, background .15s ease;
 }
+/* Invoice row hover state */
 .invoice-row:hover{ border-color:var(--teal-500); }
+/* Selected invoice row */
 .invoice-row.selected{ border-color:var(--teal-700); background:var(--sage-100); }
+/* Paid invoice row */
 .invoice-row.paid{ opacity:.55; cursor:default; }
+/* Invoice main content */
 .invoice-main{ flex:1; min-width:0; }
+/* Invoice description */
 .invoice-main .desc{ font-weight:700; font-size:.92rem; }
+/* Invoice metadata */
 .invoice-main .meta{ font-size:.8rem; color:var(--ink-soft); }
+/* Invoice amount */
 .invoice-amount{ font-family:var(--font-mono); font-weight:700; font-size:1.05rem; color:var(--teal-900); white-space:nowrap; }
 
+/* Payment form panel */
 .pay-form-panel{ position:sticky; top:1.5rem; }
+/* Payment form lead text */
 .pay-form-panel .lead{ font-size:.85rem; color:var(--ink-soft); }
+/* Field row for expiry and CVV */
 .field-row{ display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+/* Secure payment note */
 .secure-note{ font-size:.76rem; color:var(--ink-soft); text-align:center; margin:.8rem 0 0; }
 
+/* Table wrapper for horizontal scroll */
 .table-wrap{ overflow-x:auto; }
 .table-wrap table{ min-width:520px; }
 
+/* Receipt dialog styling */
 #receipt-dialog{ border:none; border-radius:var(--radius-lg); padding:2.2rem; max-width:380px; width:92%; text-align:center; box-shadow:var(--shadow-2); }
+/* Receipt dialog backdrop */
 #receipt-dialog::backdrop{ background:rgba(11,59,52,.45); }
+/* Receipt checkmark */
 .receipt-check{
   width:56px; height:56px; border-radius:50%; background:var(--good-100); color:var(--good);
   display:flex; align-items:center; justify-content:center; font-size:1.7rem; margin:0 auto 1rem; font-weight:700;

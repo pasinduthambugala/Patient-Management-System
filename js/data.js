@@ -68,7 +68,9 @@ const SAMPLE_DB = {
   ]
 };
 
+// DataStore object to manage all data operations
 const DataStore = {
+  // Function to load data from localStorage
   load() {
     let raw = localStorage.getItem(DB_KEY);
     if (!raw) {
@@ -77,16 +79,22 @@ const DataStore = {
     }
     try { return JSON.parse(raw); } catch (e) { localStorage.setItem(DB_KEY, JSON.stringify(SAMPLE_DB)); return structuredClone(SAMPLE_DB); }
   },
+  // Function to save data to localStorage
   save(db) { localStorage.setItem(DB_KEY, JSON.stringify(db)); },
+  // Function to reset data to sample data
   reset() { localStorage.setItem(DB_KEY, JSON.stringify(SAMPLE_DB)); },
 
+  // Function to get current logged-in user
   currentUser() {
     const raw = sessionStorage.getItem(SESSION_KEY);
     return raw ? JSON.parse(raw) : null;
   },
+  // Function to login user and save session
   login(user) { sessionStorage.setItem(SESSION_KEY, JSON.stringify(user)); },
+  // Function to logout user and redirect to login
   logout() { sessionStorage.removeItem(SESSION_KEY); window.location.href = 'login.html'; },
 
+  // Function to check if user has required role
   requireRole(roles) {
     const u = DataStore.currentUser();
     if (!u || !roles.includes(u.role)) {
@@ -98,6 +106,7 @@ const DataStore = {
 };
 
 /* ---------------- Toast helper ---------------- */
+// Function to create toast notification region if it doesn't exist
 function ensureToastRegion() {
   let region = document.getElementById('toast-region');
   if (!region) {
@@ -108,6 +117,7 @@ function ensureToastRegion() {
   }
   return region;
 }
+// Function to show a toast notification message
 function showToast(message, type) {
   const region = ensureToastRegion();
   const el = document.createElement('div');
@@ -119,20 +129,25 @@ function showToast(message, type) {
 
 /* ---------------- Vitals strip (signature ECG divider), injected via JS
    so every page gets it identically without repeating markup ---------------- */
+// Function to generate SVG for vitals strip (ECG line)
 function vitalsStripSVG() {
   return `<svg class="vitals-strip" viewBox="0 0 600 28" preserveAspectRatio="none" aria-hidden="true">
     <path d="M0 14 H210 L225 4 L240 24 L255 14 H600" />
   </svg>`;
 }
+// Function to mount vitals strips on all elements with data-vitals-strip attribute
 function mountVitalsStrips() {
   document.querySelectorAll('[data-vitals-strip]').forEach(el => { el.innerHTML = vitalsStripSVG(); });
 }
 document.addEventListener('DOMContentLoaded', mountVitalsStrips);
 
 /* ---------------- Small format helpers ---------------- */
+// Function to format number as Sri Lankan Rupees
 function formatLKR(n) { return 'LKR ' + Number(n).toLocaleString('en-LK', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+// Function to format ISO date to readable format
 function formatDate(iso) {
   const d = new Date(iso + 'T00:00:00');
   return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
 }
+// Function to generate unique ID with prefix
 function uid(prefix) { return prefix + '-' + Math.random().toString(36).slice(2, 7).toUpperCase(); }

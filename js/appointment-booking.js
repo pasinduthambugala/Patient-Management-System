@@ -36,6 +36,7 @@
 
   [doctorSelect, dateInput].forEach(el => el.addEventListener('change', () => { updateSummary(); renderSlots(); }));
 
+  // Function to render available time slots for booking
   function renderSlots(){
     selectedSlot = null;
     const dept = db.departments.find(d => d.id === deptSelect.value);
@@ -58,6 +59,7 @@
     });
   }
 
+  // Function to update the booking summary display
   function updateSummary(){
     const dept = db.departments.find(d => d.id === deptSelect.value);
     document.getElementById('sum-dept').textContent = dept ? dept.name : '—';
@@ -66,6 +68,7 @@
     document.getElementById('sum-time').textContent = selectedSlot || '—';
   }
 
+  // Function to set invalid state on form fields
   function setInvalid(fieldId, invalid){ document.getElementById(fieldId).classList.toggle('invalid', invalid); }
 
   document.getElementById('booking-form').addEventListener('submit', (e) => {
@@ -103,6 +106,7 @@
     renderMyAppointments();
   });
 
+  // Function to render the user's appointment list
   function renderMyAppointments(){
     db = DataStore.load();
     const rows = db.appointments.filter(a => a.patientId === user.id).sort((a,b) => b.date.localeCompare(a.date));

@@ -7,13 +7,14 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
+/* CSS custom properties (design tokens) */
 :root{
   --ink:#0a1628;
   --ink-soft:#4a5568;
   --paper:#eef5fc;
   --paper-raised:#ffffff;
 
-  /* Primary blue scale */
+  /* Primary blue color scale */
   --blue-950:#0a1628;
   --blue-900:#0d2847;
   --blue-800:#0f3d6e;
@@ -26,13 +27,13 @@
   --blue-100:#bbdefb;
   --blue-50:#e3f2fd;
 
-  /* Alias tokens (keeps all existing references intact) */
+  /* Alias tokens for backward compatibility */
   --teal-900:var(--blue-900);
   --teal-700:var(--blue-700);
   --teal-500:var(--blue-500);
   --teal-100:var(--blue-100);
 
-  /* Accent scale */
+  /* Accent color scale */
   --sky-200:#b3e5fc;
   --sky-100:#e1f5fe;
 
@@ -68,8 +69,11 @@
   --font-mono:'Inter', 'Courier New', monospace;
 }
 
+/* Global box sizing */
 *,*::before,*::after{ box-sizing:border-box; }
+/* Prevent text size adjustment on mobile */
 html{ -webkit-text-size-adjust:100%; }
+/* Base body styles */
 body{
   margin:0;
   font-family:var(--font-body);
@@ -78,6 +82,7 @@ body{
   line-height:1.6;
   -webkit-font-smoothing:antialiased;
 }
+/* Heading styles */
 h1,h2,h3,h4{
   font-family:var(--font-display);
   font-weight:700;
@@ -85,36 +90,46 @@ h1,h2,h3,h4{
   margin:0 0 .4em;
   letter-spacing:-.02em;
 }
+/* Paragraph spacing */
 p{ margin:0 0 1em; }
+/* Link styles */
 a{ color:var(--blue-700); text-decoration:none; }
+/* Link hover state */
 a:hover{ color:var(--blue-600); }
+/* Label styling */
 label{ font-size:.85rem; font-weight:600; color:var(--ink-soft); display:block; margin-bottom:.35rem; }
+/* Button base styles */
 button{ font-family:inherit; }
 
+/* Image and SVG responsive styles */
 img,svg{ max-width:100%; display:block; }
 
-/* Focus visibility everywhere */
+/* Focus visible styles for accessibility */
 a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,[tabindex]:focus-visible{
   outline:3px solid var(--blue-400);
   outline-offset:2px;
 }
 
+/* Screen reader only class */
 .sr-only{
   position:absolute; width:1px; height:1px; padding:0; margin:-1px;
   overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
 }
 
-/* ---------- Vitals strip: signature divider (ECG motif) ---------- */
+/* Vitals strip signature divider (ECG motif) */
+/* Vitals strip base styles */
 .vitals-strip{
   width:100%; height:28px; display:block;
   color:var(--blue-400);
 }
+/* Vitals strip path styling */
 .vitals-strip path{
   fill:none; stroke:currentColor; stroke-width:2;
   stroke-linecap:round; stroke-linejoin:round;
 }
 
-/* ---------- Buttons ---------- */
+/* Button component styles */
+/* Base button styles */
 .btn{
   display:inline-flex; align-items:center; justify-content:center; gap:.5em;
   font-family:var(--font-body); font-weight:600; font-size:.92rem;
@@ -122,74 +137,114 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
   border:1px solid transparent; cursor:pointer;
   transition:transform .12s ease, box-shadow .12s ease, background .15s ease, border-color .15s ease;
 }
+/* Button active state */
 .btn:active{ transform:translateY(1px); }
+/* Primary button variant */
 .btn-primary{ background:linear-gradient(135deg, var(--blue-600), var(--blue-700)); color:#fff; box-shadow:0 2px 8px rgba(21,101,192,.25); }
+/* Primary button hover */
 .btn-primary:hover{ background:linear-gradient(135deg, var(--blue-700), var(--blue-800)); box-shadow:0 4px 14px rgba(21,101,192,.35); }
+/* Secondary button variant */
 .btn-secondary{ background:var(--paper-raised); color:var(--blue-700); border-color:var(--line-strong); }
+/* Secondary button hover */
 .btn-secondary:hover{ background:var(--blue-50); border-color:var(--blue-400); }
+/* Danger button variant */
 .btn-danger{ background:var(--coral-100); color:var(--coral); border-color:#f3c6c4; }
+/* Danger button hover */
 .btn-danger:hover{ background:#f6d5d3; }
+/* Ghost button variant */
 .btn-ghost{ background:transparent; color:var(--ink-soft); }
+/* Ghost button hover */
 .btn-ghost:hover{ background:var(--blue-50); }
+/* Full width button */
 .btn-block{ width:100%; }
+/* Disabled button state */
 .btn[disabled]{ opacity:.55; cursor:not-allowed; }
+/* Small button size */
 .btn-sm{ padding:.45em .9em; font-size:.82rem; }
+/* Icon button */
 .btn-icon{ padding:.5em; border-radius:50%; width:36px; height:36px; }
 
-/* ---------- Form controls ---------- */
+/* Form control styles */
+/* Form field container */
 .field{ margin-bottom:1.15rem; }
+/* Field hint text */
 .field .hint{ font-size:.78rem; color:var(--ink-soft); margin-top:.3em; }
+/* Field error message */
 .field .error{ font-size:.8rem; color:var(--coral); margin-top:.35em; display:none; font-weight:600; }
+/* Invalid field state */
 .field.invalid .error{ display:block; }
+/* Invalid field input styling */
 .field.invalid input,.field.invalid select,.field.invalid textarea{ border-color:var(--coral); background:var(--coral-100); }
 
+/* Form input base styles */
 input[type=text],input[type=email],input[type=password],input[type=date],
 input[type=tel],input[type=number],select,textarea{
   width:100%; font-family:inherit; font-size:.95rem; color:var(--ink);
   padding:.72em .95em; border:1.5px solid var(--line-strong); border-radius:var(--radius-sm);
   background:var(--paper-raised); transition:border-color .15s ease, box-shadow .15s ease;
 }
+/* Form input focus state */
 input:focus,select:focus,textarea:focus{
   border-color:var(--blue-500); box-shadow:0 0 0 3px rgba(33,150,243,.18); outline:none;
 }
+/* Textarea specific styles */
 textarea{ resize:vertical; min-height:90px; }
 
-/* ---------- Cards / badges / tables ---------- */
+/* Card badge and table styles */
+/* Card component */
 .card{
   background:var(--paper-raised); border:1px solid var(--line); border-radius:var(--radius-md);
   box-shadow:var(--shadow-1);
 }
+/* Badge component */
 .badge{
   display:inline-flex; align-items:center; gap:.4em;
   font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.04em;
   padding:.3em .7em; border-radius:99px;
 }
+/* Success badge */
 .badge-good{ background:var(--good-100); color:var(--good); }
+/* Pending badge */
 .badge-pending{ background:var(--amber-100); color:var(--amber); }
+/* Critical badge */
 .badge-critical{ background:var(--coral-100); color:var(--coral); }
+/* Neutral badge */
 .badge-neutral{ background:var(--blue-50); color:var(--blue-700); }
+/* Info badge */
 .badge-info{ background:var(--blue-100); color:var(--blue-700); }
 
+/* Table base styles */
 table{ width:100%; border-collapse:collapse; font-size:.9rem; }
+/* Table header cell */
 th{ text-align:left; font-size:.74rem; font-weight:700; text-transform:uppercase;
   letter-spacing:.05em; color:var(--ink-soft); padding:.7em .8em; border-bottom:2px solid var(--line); }
+/* Table data cell */
 td{ padding:.85em .8em; border-bottom:1px solid var(--line); vertical-align:middle; }
+/* Last row border removal */
 tr:last-child td{ border-bottom:none; }
+/* Table row hover */
 tr:hover td{ background:var(--blue-50); }
 
-/* ---------- Toast ---------- */
+/* Toast notification styles */
+/* Toast notification container */
 #toast-region{ position:fixed; top:1.2rem; right:1.2rem; z-index:999; display:flex; flex-direction:column; gap:.6rem; }
+/* Toast notification */
 .toast{
   background:var(--blue-900); color:#fff; padding:.85em 1.2em; border-radius:var(--radius-sm);
   box-shadow:var(--shadow-2); font-size:.88rem; font-weight:600; max-width:340px;
   display:flex; align-items:center; gap:.6em; animation:toast-in .25s ease;
 }
+/* Error toast */
 .toast.error{ background:var(--coral); }
+/* Warning toast */
 .toast.warn{ background:var(--amber); color:var(--ink); }
+/* Success toast */
 .toast.success{ background:#15803d; }
+/* Toast animation */
 @keyframes toast-in{ from{ transform:translateY(-8px); opacity:0;} to{ transform:translateY(0); opacity:1;} }
 
-/* ---------- App shell (dashboards) ---------- */
+/* App shell layout for dashboards */
+/* App shell grid layout */
 .app-shell{ display:grid; grid-template-columns:270px 1fr; min-height:100vh; }
 .app-sidebar{
   background:linear-gradient(180deg, #0a1628 0%, #0d2847 50%, #0f3d6e 100%);
@@ -198,34 +253,44 @@ tr:hover td{ background:var(--blue-50); }
   border-right:1px solid rgba(255,255,255,.06);
   position:sticky; top:0; height:100vh; overflow-y:auto;
 }
+/* Sidebar brand */
 .app-sidebar .brand{ display:flex; align-items:center; gap:.7em; color:#fff; }
+/* Sidebar brand logo */
 .app-sidebar .brand .mark{ width:34px; height:34px; color:var(--blue-400); filter:drop-shadow(0 0 8px rgba(33,150,243,.4)); }
+/* Sidebar brand text */
 .app-sidebar .brand span{ font-family:var(--font-display); font-size:1.22rem; font-weight:800; letter-spacing:-.02em; }
 
-/* Sidebar section labels */
+/* Sidebar section label styling */
 .sidebar-section-label{
   font-size:.68rem; font-weight:700;
   text-transform:uppercase; letter-spacing:.1em;
   color:rgba(255,255,255,.35); padding:0 .8em; margin-bottom:.1rem;
 }
 
+/* App navigation menu */
 .app-nav{ display:flex; flex-direction:column; gap:.2rem; }
+/* App navigation link */
 .app-nav a{
   display:flex; align-items:center; gap:.75em; color:rgba(255,255,255,.65); text-decoration:none;
   padding:.7em .9em; border-radius:var(--radius-sm); font-size:.9rem; font-weight:500;
   transition:background .14s ease, color .14s ease;
 }
+/* Navigation link icon */
 .app-nav a svg{ width:18px; height:18px; opacity:.7; flex-shrink:0; transition:opacity .14s ease; }
+/* Navigation link hover */
 .app-nav a:hover{ background:rgba(255,255,255,.08); color:#fff; }
+/* Navigation link icon hover */
 .app-nav a:hover svg{ opacity:1; }
+/* Active navigation link */
 .app-nav a.active{
   background:linear-gradient(90deg, var(--blue-600), var(--blue-500));
   color:#fff; box-shadow:0 3px 12px rgba(25,118,210,.35);
   font-weight:600;
 }
+/* Active navigation link icon */
 .app-nav a.active svg{ opacity:1; }
 
-/* Sidebar divider */
+/* Sidebar divider line */
 .sidebar-divider{ height:1px; background:rgba(255,255,255,.10); margin:.3rem 0; }
 
 .sidebar-foot{
@@ -234,13 +299,14 @@ tr:hover td{ background:var(--blue-50); }
   padding-top:1.1rem;
 }
 
-/* Profile card in sidebar footer */
+/* Profile card in sidebar */
 .sidebar-profile{
   display:flex; align-items:center; gap:.75em;
   background:rgba(255,255,255,.07);
   border-radius:var(--radius-sm); padding:.65em .75em;
   margin-bottom:.85rem;
 }
+/* Sidebar avatar */
 .sidebar-avatar{
   width:38px; height:38px; border-radius:50%;
   background:linear-gradient(135deg, var(--blue-500), var(--blue-700));
@@ -248,11 +314,14 @@ tr:hover td{ background:var(--blue-50); }
   font-family:var(--font-display); font-size:.95rem; font-weight:700;
   color:#fff; flex-shrink:0; letter-spacing:-.01em;
 }
+/* Sidebar profile info */
 .sidebar-profile-info{ min-width:0; }
+/* Profile name */
 .sidebar-profile-info strong{
   display:block; color:#fff; font-size:.88rem; font-weight:600;
   white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
 }
+/* Profile role tag */
 .sidebar-profile-info .role-tag{
   display:inline-block; margin-top:.2em;
   font-size:.67rem; font-weight:700; text-transform:uppercase; letter-spacing:.07em;
@@ -260,40 +329,61 @@ tr:hover td{ background:var(--blue-50); }
   padding:.15em .5em; border-radius:99px;
 }
 
-/* Legacy .who support */
+/* Legacy who support */
 .who{ font-size:.8rem; color:var(--sky-200); margin-bottom:.7rem; }
 .who strong{ display:block; color:#fff; font-size:.92rem; }
 
+/* App main content area */
 .app-main{ padding:2rem 2.4rem 3rem; overflow-y:auto; }
+/* App top bar */
 .app-topbar{ display:flex; align-items:center; justify-content:space-between; margin-bottom:1.6rem; gap:1rem; flex-wrap:wrap; }
+/* Top bar heading */
 .app-topbar h1{ margin:0; font-size:1.7rem; }
+/* Top bar subtitle */
 .app-topbar .sub{ color:var(--ink-soft); font-size:.92rem; margin-top:.15rem; }
 
+/* Statistics grid */
 .stat-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1rem; margin-bottom:1.8rem; }
+/* Stat card */
 .stat-card{ padding:1.3rem 1.4rem; position:relative; overflow:hidden; }
+/* Stat card top accent */
 .stat-card::before{ content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg, var(--blue-500), var(--blue-300)); }
+/* Stat card number */
 .stat-card .num{ font-family:var(--font-display); font-size:2rem; color:var(--blue-900); font-weight:800; }
+/* Stat card label */
 .stat-card .label{ font-size:.82rem; color:var(--ink-soft); font-weight:600; }
+/* Stat card delta */
 .stat-card .delta{ font-size:.76rem; margin-top:.35rem; font-weight:600; }
+/* Delta up and down colors */
 .delta.up{ color:var(--good); } .delta.down{ color:var(--coral); }
 
+/* Section header */
 .section-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:.9rem; gap:1rem; flex-wrap:wrap; }
+/* Section heading */
 .section-head h2{ font-size:1.2rem; margin:0; }
 
+/* Panel component */
 .panel{ padding:1.4rem 1.5rem; margin-bottom:1.6rem; }
 
-/* ---------- Dialog / Modal ---------- */
+/* Dialog modal styles */
+/* Dialog base styles */
 dialog{
   border:none; border-radius:var(--radius-lg); padding:2rem 2.2rem;
   max-width:480px; width:92%; box-shadow:var(--shadow-3);
   animation:dialog-in .2s ease;
 }
+/* Dialog backdrop */
 dialog::backdrop{ background:rgba(10,22,40,.5); backdrop-filter:blur(4px); }
-@keyframes dialog-in{ from{ transform:translateY(-12px) scale(.97); opacity:0; } to{ transform:translateY(0) scale(1); opacity:1; } }
+/* Dialog animation */
+@keyframes dialog-in{ from{ transform:translateY(-12px) scale(.97); opacity:0; } to{ transform:translateY(0) scale(1); opacity:1; }
+/* Dialog action buttons */
 .dialog-actions{ display:flex; justify-content:flex-end; gap:.7rem; margin-top:1rem; }
+/* Dialog header */
 .dialog-header{ display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem; }
+/* Dialog header heading */
 .dialog-header h2{ margin:0; }
 
+/* Responsive styles for mobile */
 @media (max-width:900px){
   .app-shell{ grid-template-columns:1fr; }
   .app-sidebar{ flex-direction:row; align-items:center; overflow-x:auto; padding:1rem; position:static; height:auto; }

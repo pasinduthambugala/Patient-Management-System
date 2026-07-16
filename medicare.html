@@ -104,7 +104,7 @@
     </div>
 
     <script>
-        // Navigation
+        // Function to navigate to different pages
         function navigateTo(page) {
             let content = '';
             
@@ -147,6 +147,7 @@
             }
         }
 
+        // Function to render upcoming appointments list
         function renderUpcomingAppointments() {
             document.getElementById('upcoming').innerHTML = `
                 <div class="bg-zinc-900 rounded-3xl p-8 card-hover">
@@ -158,24 +159,29 @@
             `;
         }
 
+        // Function to handle user login
         function login() {
             document.getElementById('login-modal').style.display = 'none';
             navigateTo('dashboard');
         }
 
+        // Function to toggle notifications panel
         function toggleNotifications() {
             alert("🛎️ Notifications Panel\n\n• New lab results ready\n• Appointment confirmed");
         }
 
+        // Function to toggle profile menu
         function toggleProfile() {
             alert("👤 Profile Menu\n• My Profile\n• Settings\n• Logout");
         }
 
+        // Function to switch between user roles
         function switchRole(n) {
             document.getElementById('btn-doctor').classList.toggle('bg-teal-600', n === 1);
             alert("Role switched! (UI adapts based on role in full system)");
         }
 
+        // Function to process demo payment
         function processDemoPayment() {
             const msg = document.createElement('div');
             msg.innerHTML = `<div class="fixed inset-0 bg-black/90 flex items-center justify-center z-[999]"><div class="bg-emerald-600 text-white p-16 rounded-3xl text-center"><i class="fa-solid fa-circle-check text-8xl mb-6"></i><h2 class="text-4xl font-bold">Payment Successful!</h2><p class="mt-4">Receipt sent to patient email</p></div></div>`;
@@ -183,7 +189,7 @@
             setTimeout(() => msg.remove(), 2800);
         }
 
-        // Initialize
+        // Initialize the application on page load
         window.onload = () => {
             setTimeout(() => {
                 document.getElementById('login-modal').style.display = 'flex';

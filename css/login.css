@@ -1,3 +1,4 @@
+/* Login page shell layout */
 .login-shell{ min-height:100vh; display:grid; grid-template-columns:1fr 1fr; }
 
 .login-side{
@@ -5,78 +6,116 @@
   color:#e1f5fe; padding:3.2rem 3.4rem; display:flex; flex-direction:column; gap:1.6rem;
   position:relative; overflow:hidden;
 }
+/* Decorative circle gradient */
 .login-side::before{
   content:''; position:absolute; top:-80px; right:-80px; width:300px; height:300px;
   border-radius:50%; background:radial-gradient(circle, rgba(66,165,245,.3), transparent 70%);
 }
+/* Second decorative circle gradient */
 .login-side::after{
   content:''; position:absolute; right:-120px; bottom:-140px; width:400px; height:400px;
   border-radius:50%; background:radial-gradient(circle, rgba(25,118,210,.45), transparent 70%);
 }
+/* Brand logo row */
 .mark-row{ display:flex; align-items:center; gap:.6em; z-index:1; }
+/* Brand logo icon */
 .mark-row .mark{ width:32px; height:32px; color:var(--blue-300); }
+/* Brand logo text */
 .mark-row span{ font-family:var(--font-display); font-size:1.2rem; font-weight:800; color:#fff; }
+/* Login side heading */
 .login-side h1{
   font-size:2.5rem; color:#fff; line-height:1.12; max-width:12ch; z-index:1; margin-top:1rem;
 }
+/* Side panel copy text */
 .side-copy{ color:rgba(255,255,255,.8); max-width:38ch; font-size:1rem; z-index:1; }
+/* Pulse block with vitals strip */
 .pulse-block{ color:var(--blue-300); z-index:1; opacity:.7; margin:.2rem 0; }
 
+/* Statistics display */
 .side-stats{ display:flex; gap:1.5rem; z-index:1; margin:.5rem 0; }
+/* Individual stat item */
 .side-stat{
   background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.15);
   border-radius:var(--radius-md); padding:.8em 1.1em; text-align:center;
   backdrop-filter:blur(8px);
 }
+/* Stat number */
 .stat-num{ display:block; font-size:1.4rem; font-weight:800; color:#fff; }
+/* Stat label */
 .stat-label{ font-size:.72rem; color:rgba(255,255,255,.7); font-weight:600; text-transform:uppercase; letter-spacing:.04em; }
 
+/* Feature points list */
 .side-points{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:.8rem; z-index:1; }
+/* Feature point item */
 .side-points li{
   font-size:.9rem; color:rgba(255,255,255,.85); padding-left:1.5em; position:relative;
 }
+/* Feature point checkmark */
 .side-points li::before{ content:'✓'; position:absolute; left:0; color:var(--blue-300); font-weight:700; }
 
+/* Login main form section */
 .login-main{ display:flex; align-items:center; justify-content:center; padding:2.5rem; background:var(--paper); }
+/* Login card container */
 .login-card{ width:100%; max-width:420px; padding:2.4rem 2.2rem; }
+/* Login card heading */
 .login-card h2{ font-size:1.6rem; margin-bottom:.25rem; }
+/* Login card lead text */
 .login-card .lead{ color:var(--ink-soft); font-size:.92rem; margin-bottom:1.4rem; }
 
+/* Role selection tabs */
 .role-tabs{ display:flex; gap:.4rem; background:var(--blue-50); padding:.3rem; border-radius:var(--radius-sm); margin-bottom:1.5rem; }
+/* Role tab button */
 .role-tab{
   flex:1; border:none; background:transparent; padding:.55em .4em; border-radius:6px;
   font-size:.82rem; font-weight:600; color:var(--blue-700); cursor:pointer;
   transition:all .15s ease;
 }
+/* Active role tab */
 .role-tab.active{ background:var(--paper-raised); box-shadow:var(--shadow-1); color:var(--blue-900); }
 
+/* Password input row */
 .password-row{ position:relative; }
+/* Password input with show button space */
 .password-row input{ padding-right:4.2em; }
+/* Show/hide password button */
 .show-pass{
   position:absolute; right:.5em; top:50%; transform:translateY(-50%);
   background:none; border:none; color:var(--blue-700); font-size:.78rem; font-weight:700;
   cursor:pointer; padding:.3em .5em;
 }
 
+/* Row with space between elements */
 .row-between{ display:flex; align-items:center; justify-content:space-between; margin-bottom:1.3rem; font-size:.84rem; }
+/* Checkbox row */
 .check-row{ display:flex; align-items:center; gap:.5em; font-weight:500; color:var(--ink-soft); }
+/* Checkbox input */
 .check-row input{ width:auto; }
+/* Forgot password link */
 #forgot-link{ font-weight:600; text-decoration:none; }
+/* Forgot password link hover */
 #forgot-link:hover{ text-decoration:underline; }
 
+/* Demo credentials section */
 .demo-creds{ margin-top:1.6rem; border-top:1px dashed var(--line); padding-top:1.1rem; display:flex; flex-direction:column; gap:.45rem; }
+/* Demo credentials title */
 .demo-title{ font-size:.74rem; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-soft); font-weight:700; margin-bottom:.2rem; }
+/* Demo credential button */
 .cred{
   display:flex; align-items:center; gap:.6em; text-align:left; background:var(--blue-50); border:1px solid var(--line);
   border-radius:var(--radius-sm); padding:.5em .7em; font-size:.76rem; color:var(--ink-soft);
   cursor:pointer; transition:all .15s ease;
 }
+/* Demo credential button hover */
 .cred:hover{ background:var(--blue-100); border-color:var(--blue-400); }
 
+/* Sign up hint text */
 .signup-hint{ text-align:center; margin:1.4rem 0 0; font-size:.86rem; color:var(--ink-soft); }
+/* Sign up link */
 .signup-hint a{ font-weight:700; text-decoration:none; }
+/* Sign up link hover */
 .signup-hint a:hover{ text-decoration:underline; }
 
+/* Responsive styles for mobile */
 @media (max-width:860px){
   .login-shell{ grid-template-columns:1fr; }
   .login-side{ display:none; }

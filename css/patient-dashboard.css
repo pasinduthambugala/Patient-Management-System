@@ -1,35 +1,54 @@
+/* Decorative strip divider */
 .strip-divider{ margin:1.6rem 0 1.8rem; opacity:.6; }
 
+/* Dashboard grid layout */
 .dash-grid{ display:grid; grid-template-columns:1.5fr 1fr; gap:1.4rem; align-items:start; margin-bottom:1.6rem; }
 @media (max-width:1100px){ .dash-grid{ grid-template-columns:1fr; } }
 
+/* Appointment list container */
 .appt-list{ display:flex; flex-direction:column; gap:.8rem; }
+/* Appointment row styling */
 .appt-row{
   display:flex; align-items:center; gap:1rem; padding:.9rem 1rem; border:1px solid var(--line);
   border-radius:var(--radius-md); background:var(--paper);
 }
+/* Appointment date styling */
 .appt-date{
   font-family:var(--font-mono); text-align:center; background:var(--sage-100); color:var(--teal-900);
   border-radius:8px; padding:.4em .7em; min-width:58px; font-size:.75rem; font-weight:700; line-height:1.3;
 }
+/* Appointment day number */
 .appt-date .day{ display:block; font-size:1.15rem; }
+/* Appointment info content */
 .appt-info{ flex:1; min-width:0; }
+/* Appointment doctor name */
 .appt-info .doc{ font-weight:700; font-size:.94rem; }
+/* Appointment metadata */
 .appt-info .meta{ font-size:.8rem; color:var(--ink-soft); }
+/* Empty appointment message */
 .appt-empty{ color:var(--ink-soft); font-size:.9rem; padding:1rem 0; }
 
+/* Quick actions grid */
 .quick-actions{ display:grid; grid-template-columns:1fr 1fr; gap:.8rem; }
+/* Quick action tile styling */
 .quick-tile{
   display:flex; flex-direction:column; align-items:flex-start; gap:.5rem; text-decoration:none;
   background:var(--sage-100); border:1px solid var(--sage-200); border-radius:var(--radius-md);
   padding:1rem; color:var(--teal-900); font-weight:600; font-size:.86rem;
 }
+/* Quick action tile hover */
 .quick-tile:hover{ background:var(--sage-200); }
+/* Quick action icon */
 .q-icon{ font-size:1.3rem; }
 @media (max-width:520px){ .quick-actions{ grid-template-columns:1fr; } }
 
+/* Activity list container */
 .activity-list{ display:flex; flex-direction:column; }
+/* Activity row styling */
 .activity-row{ display:flex; gap:.9rem; padding:.75rem 0; border-bottom:1px solid var(--line); font-size:.88rem; }
+/* Last activity row border */
 .activity-row:last-child{ border-bottom:none; }
+/* Activity dot indicator */
 .activity-dot{ width:8px; height:8px; border-radius:50%; background:var(--teal-500); margin-top:.4em; flex-shrink:0; }
+/* Activity timestamp */
 .activity-row .when{ color:var(--ink-soft); font-family:var(--font-mono); font-size:.74rem; display:block; margin-top:.15em; }

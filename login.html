@@ -12,10 +12,12 @@
 </head>
 
 <body>
-
+<!-- Main login shell container -->
   <div class="login-shell">
 
+    <!-- Login side panel with branding -->
     <section class="login-side" aria-hidden="true">
+      <!-- Brand logo row -->
       <div class="mark-row">
         <svg class="mark" viewBox="0 0 32 32" fill="none">
           <path d="M16 3 4 8v8c0 8 5.2 13.4 12 17 6.8-3.6 12-9 12-17V8L16 3Z" stroke="currentColor" stroke-width="1.6"
@@ -28,14 +30,17 @@
       <p class="side-copy">We are committed to providing you with the best medical and healthcare services to help you
         live healthier and happier.</p>
 
+      <!-- Decorative pulse block with vitals strip -->
       <div class="pulse-block" data-vitals-strip></div>
 
+      <!-- Statistics display -->
       <div class="side-stats">
         <div class="side-stat"><span class="stat-num">870+</span><span class="stat-label">Doctors</span></div>
         <div class="side-stat"><span class="stat-num">150K+</span><span class="stat-label">Patient Recover</span></div>
         <div class="side-stat"><span class="stat-num">95%</span><span class="stat-label">Satisfaction</span></div>
       </div>
 
+      <!-- Feature points list -->
       <ul class="side-points">
         <li>Same-day appointment booking across 5 departments</li>
         <li>Encrypted medical records, accessible only to your care team</li>
@@ -43,11 +48,14 @@
       </ul>
     </section>
 
+    <!-- Login main form section -->
     <section class="login-main">
+      <!-- Login card container -->
       <div class="login-card card">
         <h2>Welcome back</h2>
         <p class="lead">Sign in to continue to your dashboard.</p>
 
+        <!-- Role selection tabs -->
         <div class="role-tabs" role="tablist" aria-label="Sign in as">
           <button type="button" class="role-tab active" data-role="patient" role="tab"
             aria-selected="true">Patient</button>
@@ -56,6 +64,7 @@
             aria-selected="false">Administrator</button>
         </div>
 
+        <!-- Login form -->
         <form id="login-form" novalidate>
           <div class="field" id="field-email">
             <label for="email">Email address</label>
@@ -81,6 +90,7 @@
           <button type="submit" class="btn btn-primary btn-block">Sign in</button>
         </form>
 
+        <!-- Demo credentials for testing -->
         <div class="demo-creds" id="demo-creds">
           <p class="demo-title">Demo credentials — click to autofill</p>
           <button type="button" class="cred" data-email="patient@medicore.lk" data-password="patient123">
@@ -99,7 +109,7 @@
     </section>
   </div>
 
-  <!-- Register dialog -->
+  <!-- Patient registration dialog -->
   <dialog id="register-dialog">
     <form id="register-form" novalidate>
       <h2>Patient registration</h2>
@@ -127,6 +137,7 @@
     </form>
   </dialog>
 
+  <!-- Toast notification region -->
   <div id="toast-region" aria-live="polite"></div>
 
   <script src="js/data.js"></script>

@@ -24,7 +24,9 @@
   document.getElementById('stat-labs').textContent = myLabsReady.length;
   document.getElementById('stat-due').textContent = formatLKR(dueTotal);
 
+  // Helper function to get short month name from ISO date
   const monthShort = (iso) => new Date(iso + 'T00:00:00').toLocaleDateString('en-GB',{month:'short'}).toUpperCase();
+  // Helper function to get day number from ISO date
   const dayNum = (iso) => new Date(iso + 'T00:00:00').getDate();
 
   const list = document.getElementById('upcoming-list');
