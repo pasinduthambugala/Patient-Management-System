@@ -9,6 +9,9 @@
   const roleTag = document.getElementById('who-role');
   if(user.role === 'doctor'){
     roleTag.textContent = `Doctor · ${user.dept}`;
+    // Hide add patient and add doctor buttons for doctor role
+    document.getElementById('add-patient-btn').style.display = 'none';
+    document.getElementById('add-doctor-btn').style.display = 'none';
   } else {
     roleTag.textContent = 'Administrator';
   }
