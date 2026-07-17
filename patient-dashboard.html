@@ -1,112 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard — MediCore</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/tokens.css">
-<link rel="stylesheet" href="css/patient-dashboard.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard — MediCore</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/tokens.css">
+    <link rel="stylesheet" href="css/patient-dashboard.css">
 </head>
 <body>
-<!-- Main application shell container -->
-<div class="app-shell">
+    <div class="app-shell">
+        <!-- Sidebar -->
+        <aside class="app-sidebar" id="sidebar">
+            <button class="sidebar-close" id="sidebar-close" aria-label="Close menu">✕</button>
+            
+            <div class="brand">
+                <svg class="mark" viewBox="0 0 32 32" fill="none">
+                    <path d="M16 3 4 8v8c0 8 5.2 13.4 12 17 6.8-3.6 12-9 12-17V8L16 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                    <path d="M16 12v9M11.5 16.5h9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                </svg>
+                <span>MediCore</span>
+            </div>
 
-  <!-- Sidebar navigation -->
-  <aside class="app-sidebar">
-    <!-- Brand logo section -->
-    <div class="brand">
-      <svg class="mark" viewBox="0 0 32 32" fill="none"><path d="M16 3 4 8v8c0 8 5.2 13.4 12 17 6.8-3.6 12-9 12-17V8L16 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M16 12v9M11.5 16.5h9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-      <span>MediCore</span>
+            <div>
+                <p class="sidebar-section-label">Main menu</p>
+                <nav class="app-nav" aria-label="Primary">
+                    <a href="patient-dashboard.html" class="active">
+                        <svg viewBox="0 0 20 20" fill="none"><path d="M3 10.5 10 4l7 6.5M5 9v7h10V9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        Dashboard
+                    </a>
+                    <a href="appointment-booking.html">
+                        <svg viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="13" rx="1.6" stroke="currentColor" stroke-width="1.6"/><path d="M3 8h14M7 2.5v3M13 2.5v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+                        Appointments
+                    </a>
+                    <a href="medical-records.html">
+                        <svg viewBox="0 0 20 20" fill="none"><path d="M5 3h7l3 3v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M7 9h6M7 12h6M7 15h3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                        Medical records
+                    </a>
+                    <a href="payment.html">
+                        <svg viewBox="0 0 20 20" fill="none"><rect x="2.5" y="5" width="15" height="10" rx="1.6" stroke="currentColor" stroke-width="1.6"/><path d="M2.5 8.5h15" stroke="currentColor" stroke-width="1.6"/></svg>
+                        Payments
+                    </a>
+                </nav>
+            </div>
+
+            <div class="sidebar-foot">
+                <div class="sidebar-profile">
+                    <div class="sidebar-avatar" id="sidebar-avatar-initials">—</div>
+                    <div class="sidebar-profile-info">
+                        <strong id="who-name">—</strong>
+                        <span class="role-tag" id="who-role">Patient</span>
+                    </div>
+                </div>
+                <button class="btn btn-secondary btn-block" id="logout-btn">Sign out</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="app-main">
+            <div class="app-topbar">
+                <div class="topbar-left">
+                    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                        <span></span><span></span><span></span>
+                    </button>
+                    <div>
+                        <h1 id="greeting">Welcome back</h1>
+                        <p class="sub">Here's what's happening with your care today.</p>
+                    </div>
+                </div>
+                <a href="appointment-booking.html" class="btn btn-primary">+ Book appointment</a>
+            </div>
+
+            <!-- Statistics Grid -->
+            <div class="stat-grid">
+                <div class="card stat-card">
+                    <div class="num" id="stat-upcoming">0</div>
+                    <div class="label">Upcoming appointments</div>
+                </div>
+                <div class="card stat-card">
+                    <div class="num" id="stat-records">0</div>
+                    <div class="label">Medical records</div>
+                </div>
+                <div class="card stat-card">
+                    <div class="num" id="stat-labs">0</div>
+                    <div class="label">Lab reports ready</div>
+                </div>
+                <div class="card stat-card">
+                    <div class="num" id="stat-due">LKR 0</div>
+                    <div class="label">Due today</div>
+                </div>
+            </div>
+
+            <!-- Divider -->
+            <div data-vitals-strip class="strip-divider"></div>
+
+            <!-- Dashboard Grid -->
+            <div class="dash-grid">
+                <!-- Upcoming Appointments -->
+                <section class="card panel upcoming-panel">
+                    <div class="section-head">
+                        <h2>Upcoming Appointments</h2>
+                        <a href="appointment-booking.html">View all</a>
+                    </div>
+                    <div id="upcoming-list" class="appt-list"></div>
+                </section>
+
+                <!-- Quick Actions -->
+                <section class="card panel quick-panel">
+                    <div class="section-head">
+                        <h2>Quick Actions</h2>
+                    </div>
+                    <div class="quick-actions">
+                        <a class="quick-tile" href="appointment-booking.html">
+                            <span class="q-icon">📅</span>
+                            <span>Book Appointment</span>
+                        </a>
+                        <a class="quick-tile" href="medical-records.html">
+                            <span class="q-icon">🧾</span>
+                            <span>Medical Records</span>
+                        </a>
+                        <a class="quick-tile" href="medical-records.html#labs">
+                            <span class="q-icon">🧪</span>
+                            <span>Lab Reports</span>
+                        </a>
+                        <a class="quick-tile" href="payment.html">
+                            <span class="q-icon">💳</span>
+                            <span>Pay Invoice</span>
+                        </a>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Recent Activity -->
+            <section class="card panel">
+                <div class="section-head">
+                    <h2>Recent Activity</h2>
+                </div>
+                <div id="activity-list" class="activity-list"></div>
+            </section>
+        </main>
     </div>
-    <!-- Main navigation menu -->
-    <div>
-      <p class="sidebar-section-label">Main menu</p>
-      <nav class="app-nav" aria-label="Primary">
-        <a href="patient-dashboard.html" class="active"><svg viewBox="0 0 20 20" fill="none"><path d="M3 10.5 10 4l7 6.5M5 9v7h10V9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Dashboard</a>
-        <a href="appointment-booking.html"><svg viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="13" rx="1.6" stroke="currentColor" stroke-width="1.6"/><path d="M3 8h14M7 2.5v3M13 2.5v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Appointments</a>
-        <a href="medical-records.html"><svg viewBox="0 0 20 20" fill="none"><path d="M5 3h7l3 3v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M7 9h6M7 12h6M7 15h3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Medical records</a>
-        <a href="payment.html"><svg viewBox="0 0 20 20" fill="none"><rect x="2.5" y="5" width="15" height="10" rx="1.6" stroke="currentColor" stroke-width="1.6"/><path d="M2.5 8.5h15" stroke="currentColor" stroke-width="1.6"/></svg>Payments</a>
-      </nav>
-    </div>
-    <!-- Sidebar footer with user profile -->
-    <div class="sidebar-foot">
-      <div class="sidebar-profile">
-        <div class="sidebar-avatar" id="sidebar-avatar-initials">—</div>
-        <div class="sidebar-profile-info">
-          <strong id="who-name">—</strong>
-          <span class="role-tag" id="who-role">Patient</span>
-        </div>
-      </div>
-      <button class="btn btn-secondary btn-block" id="logout-btn">Sign out</button>
-    </div>
-  </aside>
 
-  <!-- Main content area -->
-  <main class="app-main">
-    <!-- Top bar with page title -->
-    <div class="app-topbar">
-      <div>
-        <h1 id="greeting">Welcome back</h1>
-        <p class="sub">Here's what's happening with your care today.</p>
-      </div>
-      <a href="appointment-booking.html" class="btn btn-primary">+ Book appointment</a>
-    </div>
+    <!-- Backdrop -->
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
 
-    <!-- Statistics grid showing key metrics -->
-    <div class="stat-grid">
-      <div class="card stat-card"><div class="num" id="stat-upcoming">0</div><div class="label">Upcoming appointments</div></div>
-      <div class="card stat-card"><div class="num" id="stat-records">0</div><div class="label">Medical records on file</div></div>
-      <div class="card stat-card"><div class="num" id="stat-labs">0</div><div class="label">Lab reports ready</div></div>
-      <div class="card stat-card"><div class="num" id="stat-due">LKR 0</div><div class="label">Outstanding balance</div></div>
-    </div>
+    <!-- Toast -->
+    <div id="toast-region" aria-live="polite"></div>
 
-    <!-- Decorative divider with vitals strip -->
-    <div data-vitals-strip class="strip-divider"></div>
-
-    <!-- Dashboard grid with panels -->
-    <div class="dash-grid">
-      <section class="card panel">
-        <div class="section-head">
-          <h2>Upcoming appointments</h2>
-          <a href="appointment-booking.html">View all</a>
-        </div>
-        <div id="upcoming-list" class="appt-list"></div>
-      </section>
-
-      <section class="card panel">
-        <div class="section-head"><h2>Quick actions</h2></div>
-        <!-- Quick action tiles -->
-        <div class="quick-actions">
-          <a class="quick-tile" href="appointment-booking.html">
-            <span class="q-icon">📅</span><span>Book a new appointment</span>
-          </a>
-          <a class="quick-tile" href="medical-records.html">
-            <span class="q-icon">🧾</span><span>View medical records</span>
-          </a>
-          <a class="quick-tile" href="medical-records.html#labs">
-            <span class="q-icon">🧪</span><span>Check lab reports</span>
-          </a>
-          <a class="quick-tile" href="payment.html">
-            <span class="q-icon">💳</span><span>Pay an invoice</span>
-          </a>
-        </div>
-      </section>
-    </div>
-
-    <!-- Recent activity panel -->
-    <section class="card panel">
-      <div class="section-head"><h2>Recent activity</h2></div>
-      <div id="activity-list" class="activity-list"></div>
-    </section>
-  </main>
-</div>
-
-<!-- Toast notification region -->
-<div id="toast-region" aria-live="polite"></div>
-
-<script src="js/data.js"></script>
-<script src="js/patient-dashboard.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/patient-dashboard.js"></script>
 </body>
 </html>

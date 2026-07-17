@@ -1,50 +1,243 @@
-/* Tab navigation styling */
-.tabs{ display:flex; gap:.4rem; border-bottom:1px solid var(--line); margin-bottom:1.4rem; }
-/* Tab button styling */
+/* ===================== MOBILE SIDEBAR ===================== */
+.topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: none;
+    padding: 8px 10px;
+    cursor: pointer;
+}
+
+.hamburger span {
+    width: 24px;
+    height: 3px;
+    background: var(--blue-700);
+    border-radius: 2px;
+}
+
+.sidebar-close {
+    display: none;
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.sidebar-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 22, 40, 0.65);
+    backdrop-filter: blur(4px);
+    z-index: 150;
+}
+
+/* Mobile Sidebar */
+@media (max-width: 900px) {
+    .hamburger { display: flex; }
+    
+    .app-sidebar {
+        position: fixed;
+        top: 0; left: 0;
+        width: 280px;
+        height: 100vh;
+        transform: translateX(-100%);
+        transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+        z-index: 200;
+        box-shadow: var(--shadow-3);
+    }
+    
+    .app-sidebar.open { transform: translateX(0); }
+    .sidebar-close { display: block; }
+    .sidebar-backdrop.show { display: block; }
+    
+    .app-main { padding: 1.4rem 1.2rem; }
+}
+
+/* ===================== TAB NAVIGATION ===================== */
+.tabs{ 
+    display:flex; 
+    gap:.4rem; 
+    border-bottom:1px solid var(--line); 
+    margin-bottom:1.4rem; 
+}
+
 .tab{
-  background:none; border:none; padding:.8em 1.1em; font-weight:700; font-size:.9rem; color:var(--ink-soft);
-  cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-1px;
+    background:none; 
+    border:none; 
+    padding:.8em 1.1em; 
+    font-weight:700; 
+    font-size:.9rem; 
+    color:var(--ink-soft);
+    cursor:pointer; 
+    border-bottom:2px solid transparent; 
+    margin-bottom:-1px;
 }
-/* Active tab styling */
-.tab.active{ color:var(--teal-700); border-bottom-color:var(--teal-700); }
 
-/* Table search input */
-.table-search{ max-width:260px; }
+.tab.active{ 
+    color:var(--teal-700); 
+    border-bottom-color:var(--teal-700); 
+}
 
-/* Records list container */
-.records-list{ display:flex; flex-direction:column; gap:.9rem; }
-/* Record card styling */
+/* ===================== RECORDS LIST ===================== */
+.table-search{ 
+    max-width:260px; 
+}
+
+.records-list{ 
+    display:flex; 
+    flex-direction:column; 
+    gap:.9rem; 
+}
+
+/* Record Card - Fixed for Mobile */
 .record-card{
-  background:var(--paper-raised); border:1px solid var(--line); border-radius:var(--radius-md);
-  padding:1.1rem 1.3rem; display:flex; align-items:center; gap:1.2rem; cursor:pointer; transition:box-shadow .15s ease;
+    background:var(--paper-raised); 
+    border:1px solid var(--line); 
+    border-radius:var(--radius-md);
+    padding:1.1rem 1.3rem; 
+    display:flex; 
+    align-items:center; 
+    gap:1rem; 
+    cursor:pointer; 
+    transition:box-shadow .15s ease;
+    flex-wrap: wrap;
+    position: relative;
 }
-/* Record card hover state */
-.record-card:hover{ box-shadow:var(--shadow-2); }
-/* Record icon styling */
-.record-icon{
-  width:44px; height:44px; border-radius:10px; background:var(--sage-100); color:var(--teal-700);
-  display:flex; align-items:center; justify-content:center; font-size:1.3rem; flex-shrink:0;
-}
-/* Record main content */
-.record-main{ flex:1; min-width:0; }
-/* Record title */
-.record-main .title{ font-weight:700; font-size:.98rem; }
-/* Record metadata */
-.record-main .meta{ font-size:.82rem; color:var(--ink-soft); margin-top:.15rem; }
-/* Record date */
-.record-date{ font-family:var(--font-mono); font-size:.78rem; color:var(--ink-soft); white-space:nowrap; }
 
-/* Record dialog styling */
-#record-dialog{ border:none; border-radius:var(--radius-lg); padding:2rem; max-width:480px; width:92%; box-shadow:var(--shadow-2); }
-/* Record dialog backdrop */
-#record-dialog::backdrop{ background:rgba(11,59,52,.45); }
-/* Prescription table styling */
-.rx-table{ width:100%; margin-top:.8rem; font-size:.85rem; }
-/* Prescription table header */
-.rx-table th{ font-size:.68rem; }
-/* Lab result row */
-.result-row{ display:flex; justify-content:space-between; padding:.5em 0; border-bottom:1px solid var(--line); font-size:.88rem; }
-/* Last result row border */
-.result-row:last-child{ border-bottom:none; }
-/* Lab result range */
-.result-range{ color:var(--ink-soft); font-family:var(--font-mono); font-size:.76rem; }
+.record-card:hover{ 
+    box-shadow:var(--shadow-2); 
+}
+
+/* Record Icon */
+.record-icon{
+    width:44px; 
+    height:44px; 
+    border-radius:10px; 
+    background:var(--sage-100); 
+    color:var(--teal-700);
+    display:flex; 
+    align-items:center; 
+    justify-content:center; 
+    font-size:1.3rem; 
+    flex-shrink:0;
+}
+
+/* Record Main Content */
+.record-main{ 
+    flex:1; 
+    min-width:0; 
+}
+
+.record-main .title{ 
+    font-weight:700; 
+    font-size:.98rem; 
+    line-height:1.3;
+}
+
+.record-main .meta{ 
+    font-size:.82rem; 
+    color:var(--ink-soft); 
+    margin-top:.15rem; 
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+/* Record Date */
+.record-date{ 
+    font-family:var(--font-mono); 
+    font-size:.78rem; 
+    color:var(--ink-soft); 
+    white-space:nowrap; 
+    margin-left:auto;
+    padding-left:1rem;
+    border-left:1px solid var(--line);
+}
+
+/* Mobile Fix for Lab Report Cards */
+@media (max-width: 600px) {
+    .record-card {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1.1rem;
+        gap: 0.8rem;
+    }
+    
+    .record-main {
+        width: 100%;
+    }
+    
+    .record-date {
+        margin-left: 0;
+        padding-left: 0;
+        border-left: none;
+        align-self: flex-end;
+        margin-top: 0.4rem;
+        font-size: .75rem;
+    }
+}
+
+/* ===================== DIALOG ===================== */
+#record-dialog{ 
+    border:none; 
+    border-radius:var(--radius-lg); 
+    padding:2rem; 
+    max-width:480px; 
+    width:92%; 
+    box-shadow:var(--shadow-3); 
+}
+
+#record-dialog::backdrop{ 
+    background:rgba(11,59,52,.45); 
+}
+
+/* Prescription Table */
+.rx-table{ 
+    width:100%; 
+    margin-top:.8rem; 
+    font-size:.85rem; 
+    border-collapse:collapse;
+}
+
+.rx-table th{ 
+    font-size:.68rem; 
+    text-align:left;
+    padding-bottom:0.5rem;
+    border-bottom:1px solid var(--line);
+}
+
+.rx-table td{ 
+    padding:0.6rem 0.4rem;
+    border-bottom:1px solid var(--line);
+}
+
+/* Lab Result Rows */
+.result-row{ 
+    display:flex; 
+    justify-content:space-between; 
+    padding:.5em 0; 
+    border-bottom:1px solid var(--line); 
+    font-size:.88rem; 
+}
+
+.result-row:last-child{ 
+    border-bottom:none; 
+}
+
+.result-range{ 
+    color:var(--ink-soft); 
+    font-family:var(--font-mono); 
+    font-size:.76rem; 
+}
