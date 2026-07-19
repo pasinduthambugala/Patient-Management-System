@@ -21,6 +21,117 @@
         
         .modal { animation: modalPop 0.3s ease forwards; }
         @keyframes modalPop { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+        
+        /* Mobile Responsive Styles */
+        @media (max-width: 1024px) {
+            .grid-cols-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            /* Hide top nav links on mobile */
+            nav .flex.items-center.gap-8 {
+                display: none;
+            }
+            
+            /* Sidebar adjustments */
+            .w-72 {
+                width: 100%;
+                position: fixed;
+                left: -100%;
+                transition: left 0.3s ease;
+                z-index: 100;
+            }
+            
+            .w-72.open {
+                left: 0;
+            }
+            
+            /* Main content adjustments */
+            .ml-72 {
+                margin-left: 0;
+            }
+            
+            .p-10 {
+                padding: 1.5rem;
+            }
+            
+            /* Grid adjustments */
+            .grid-cols-4,
+            .grid-cols-3 {
+                grid-template-columns: 1fr;
+            }
+            
+            /* Modal adjustments */
+            .modal {
+                width: 95%;
+                margin: 1rem;
+                padding: 2rem;
+            }
+            
+            /* Login modal */
+            #login-modal .modal {
+                padding: 2rem 1.5rem;
+            }
+            
+            #login-modal input {
+                padding: 1rem;
+                font-size: 1rem;
+            }
+            
+            #login-modal button {
+                padding: 1rem;
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            /* Top nav */
+            nav .max-w-7xl {
+                padding: 0 1rem;
+            }
+            
+            .logo-font {
+                font-size: 1.5rem;
+            }
+            
+            /* Sidebar */
+            .w-72 {
+                width: 85%;
+            }
+            
+            /* Main content */
+            .p-10 {
+                padding: 1rem;
+            }
+            
+            /* Text sizes */
+            .text-5xl {
+                font-size: 2rem;
+            }
+            
+            .text-4xl {
+                font-size: 1.5rem;
+            }
+            
+            .text-3xl {
+                font-size: 1.25rem;
+            }
+            
+            .text-6xl {
+                font-size: 2.5rem;
+            }
+            
+            /* Cards */
+            .p-8 {
+                padding: 1rem;
+            }
+            
+            .rounded-3xl {
+                border-radius: 1rem;
+            }
+        }
     </style>
 </head>
 <body class="bg-zinc-950 text-zinc-100">
@@ -29,11 +140,14 @@
     <nav class="bg-zinc-900 border-b border-zinc-800 fixed w-full z-50">
         <div class="max-w-7xl mx-auto px-8 py-5 flex items-center justify-between">
             <div class="flex items-center gap-3">
+                <button id="mobile-menu-btn" class="lg:hidden text-2xl text-zinc-400 hover:text-teal-400">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
                 <div class="w-11 h-11 bg-teal-600 rounded-3xl flex items-center justify-center text-3xl font-bold">M</div>
                 <div class="logo-font text-4xl font-bold tracking-tighter">MediCare</div>
             </div>
             
-            <div class="flex items-center gap-8 text-sm">
+            <div class="flex items-center gap-8 text-sm hidden lg:flex">
                 <a onclick="navigateTo('dashboard')" class="nav-link cursor-pointer flex items-center gap-2"><i class="fa-solid fa-house"></i> Dashboard</a>
                 <a onclick="navigateTo('appointments')" class="nav-link cursor-pointer flex items-center gap-2"><i class="fa-solid fa-calendar"></i> Appointments</a>
                 <a onclick="navigateTo('records')" class="nav-link cursor-pointer flex items-center gap-2"><i class="fa-solid fa-file-medical"></i> Records</a>
@@ -48,7 +162,7 @@
                 </button>
                 <div onclick="toggleProfile()" class="flex items-center gap-3 cursor-pointer">
                     <img src="https://picsum.photos/id/64/128/128" class="w-9 h-9 rounded-2xl ring-2 ring-teal-500" alt="">
-                    <div>
+                    <div class="hidden sm:block">
                         <p class="text-sm font-medium">Dr. Sarah Chen</p>
                         <p class="text-xs text-teal-400">Cardiologist</p>
                     </div>
@@ -104,6 +218,25 @@
     </div>
 
     <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const sidebar = document.querySelector('.bg-zinc-900.h-screen');
+        
+        if(mobileMenuBtn && sidebar) {
+            mobileMenuBtn.addEventListener('click', () => {
+                sidebar.classList.toggle('open');
+            });
+        }
+        
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', (e) => {
+            if(window.innerWidth <= 768 && sidebar) {
+                if(!sidebar.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                    sidebar.classList.remove('open');
+                }
+            }
+        });
+        
         // Function to navigate to different pages
         function navigateTo(page) {
             let content = '';

@@ -82,6 +82,13 @@ body{
   line-height:1.6;
   -webkit-font-smoothing:antialiased;
 }
+
+/* Mobile body adjustments */
+@media (max-width: 600px) {
+  body {
+    font-size: 14px;
+  }
+}
 /* Heading styles */
 h1,h2,h3,h4{
   font-family:var(--font-display);
@@ -89,6 +96,14 @@ h1,h2,h3,h4{
   color:var(--blue-900);
   margin:0 0 .4em;
   letter-spacing:-.02em;
+}
+
+/* Mobile heading adjustments */
+@media (max-width: 600px) {
+  h1 { font-size: 1.5rem; }
+  h2 { font-size: 1.25rem; }
+  h3 { font-size: 1.1rem; }
+  h4 { font-size: 1rem; }
 }
 /* Paragraph spacing */
 p{ margin:0 0 1em; }
@@ -164,6 +179,24 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 /* Icon button */
 .btn-icon{ padding:.5em; border-radius:50%; width:36px; height:36px; }
 
+/* Mobile button adjustments */
+@media (max-width: 600px) {
+  .btn {
+    font-size: 0.85rem;
+    padding: 0.6em 1.2em;
+  }
+  
+  .btn-sm {
+    font-size: 0.75rem;
+    padding: 0.4em 0.8em;
+  }
+  
+  .btn-icon {
+    width: 32px;
+    height: 32px;
+  }
+}
+
 /* Form control styles */
 /* Form field container */
 .field{ margin-bottom:1.15rem; }
@@ -190,11 +223,31 @@ input:focus,select:focus,textarea:focus{
 /* Textarea specific styles */
 textarea{ resize:vertical; min-height:90px; }
 
+/* Mobile form input adjustments */
+@media (max-width: 600px) {
+  input[type=text],input[type=email],input[type=password],input[type=date],
+  input[type=tel],input[type=number],select,textarea{
+    font-size: 0.9rem;
+    padding: 0.6em 0.8em;
+  }
+  
+  textarea {
+    min-height: 70px;
+  }
+}
+
 /* Card badge and table styles */
 /* Card component */
 .card{
   background:var(--paper-raised); border:1px solid var(--line); border-radius:var(--radius-md);
   box-shadow:var(--shadow-1);
+}
+
+/* Mobile card adjustments */
+@media (max-width: 600px) {
+  .card {
+    border-radius: var(--radius-sm);
+  }
 }
 /* Badge component */
 .badge{
@@ -225,14 +278,53 @@ tr:last-child td{ border-bottom:none; }
 /* Table row hover */
 tr:hover td{ background:var(--blue-50); }
 
+/* Mobile table adjustments */
+@media (max-width: 600px) {
+  table {
+    font-size: 0.8rem;
+  }
+  
+  th {
+    padding: 0.5em 0.6em;
+    font-size: 0.65rem;
+  }
+  
+  td {
+    padding: 0.6em 0.6em;
+  }
+}
+
 /* Toast notification styles */
 /* Toast notification container */
 #toast-region{ position:fixed; top:1.2rem; right:1.2rem; z-index:999; display:flex; flex-direction:column; gap:.6rem; }
 /* Toast notification */
 .toast{
   background:var(--blue-900); color:#fff; padding:.85em 1.2em; border-radius:var(--radius-sm);
-  box-shadow:var(--shadow-2); font-size:.88rem; font-weight:600; max-width:340px;
-  display:flex; align-items:center; gap:.6em; animation:toast-in .25s ease;
+  box-shadow:var(--shadow-2); font-size:.88rem;
+}
+
+/* Mobile toast adjustments */
+@media (max-width: 600px) {
+  #toast-region {
+    top: 1rem;
+    right: 1rem;
+    left: 1rem;
+  }
+  
+  .toast {
+    font-size: 0.8rem;
+    padding: 0.7em 1em;
+  }
+}
+
+/* Toast notification continuation */
+.toast {
+  font-weight: 600;
+  max-width: 340px;
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  animation: toast-in 0.25s ease;
 }
 /* Error toast */
 .toast.error{ background:var(--coral); }

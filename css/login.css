@@ -57,6 +57,17 @@
 .login-main{ display:flex; align-items:center; justify-content:center; padding:2.5rem; background:var(--paper); }
 /* Login card container */
 .login-card{ width:100%; max-width:420px; padding:2.4rem 2.2rem; }
+
+/* Medium mobile devices */
+@media (max-width: 600px) {
+  .login-main {
+    padding: 2rem;
+  }
+  
+  .login-card {
+    padding: 2rem 1.8rem;
+  }
+}
 /* Login card heading */
 .login-card h2{ font-size:1.6rem; margin-bottom:.25rem; }
 /* Login card lead text */
@@ -119,4 +130,45 @@
 @media (max-width:860px){
   .login-shell{ grid-template-columns:1fr; }
   .login-side{ display:none; }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .login-main {
+    padding: 1.5rem;
+  }
+  
+  .login-card {
+    padding: 1.8rem 1.5rem;
+  }
+  
+  .login-card h2 {
+    font-size: 1.4rem;
+  }
+  
+  .login-card .lead {
+    font-size: 0.85rem;
+  }
+  
+  .role-tabs {
+    margin-bottom: 1.2rem;
+  }
+  
+  .role-tab {
+    font-size: 0.75rem;
+    padding: 0.5em 0.3em;
+  }
+  
+  .demo-creds {
+    margin-top: 1.2rem;
+  }
+  
+  .cred {
+    font-size: 0.7rem;
+    padding: 0.4em 0.6em;
+  }
+  
+  .signup-hint {
+    font-size: 0.8rem;
+  }
 }

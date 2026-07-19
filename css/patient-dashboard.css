@@ -1,8 +1,37 @@
 /* ==================== IMPROVED DASHBOARD LAYOUT ==================== */
 
+/* App shell layout */
+.app-shell {
+    display: flex;
+    min-height: 100vh;
+}
+
+.app-sidebar {
+    width: 260px;
+    background: var(--blue-900);
+    color: white;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
+
 .app-main {
+    flex: 1;
     padding: 2rem 2.4rem 3rem;
     overflow-y: auto;
+}
+
+.app-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 .topbar-left {
@@ -16,6 +45,24 @@
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1.2rem;
     margin-bottom: 2rem;
+}
+
+.stat-card {
+    padding: 1.4rem;
+    text-align: center;
+}
+
+.stat-card .num {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--teal-700);
+    margin-bottom: 0.3rem;
+}
+
+.stat-card .label {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    font-weight: 500;
 }
 
 .dash-grid {
@@ -129,6 +176,77 @@
     
     .quick-actions {
         grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 600px) {
+    .app-main {
+        padding: 1rem 0.8rem;
+    }
+    
+    .app-topbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .app-topbar .btn {
+        width: 100%;
+    }
+    
+    .stat-grid {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+    
+    .stat-card {
+        padding: 1rem;
+    }
+    
+    .stat-card .num {
+        font-size: 1.8rem;
+    }
+    
+    .section-head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .section-head h2 {
+        font-size: 1.1rem;
+    }
+    
+    .quick-actions {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.8rem;
+    }
+    
+    .quick-tile {
+        padding: 1rem 0.8rem;
+    }
+    
+    .q-icon {
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .quick-tile span:last-child {
+        font-size: 0.85rem;
+    }
+    
+    .activity-row {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .activity-dot {
+        display: none;
+    }
+    
+    .panel {
+        padding: 1.2rem;
     }
 }
 

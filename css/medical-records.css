@@ -1,4 +1,37 @@
-/* ===================== MOBILE SIDEBAR ===================== */
+/* ===================== APP SHELL LAYOUT ===================== */
+.app-shell {
+    display: flex;
+    min-height: 100vh;
+}
+
+.app-sidebar {
+    width: 260px;
+    background: var(--blue-900);
+    color: white;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.app-main {
+    flex: 1;
+    padding: 2rem 2.4rem;
+    overflow-y: auto;
+}
+
+.app-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
 .topbar-left {
     display: flex;
     align-items: center;
@@ -63,6 +96,63 @@
     .sidebar-backdrop.show { display: block; }
     
     .app-main { padding: 1.4rem 1.2rem; }
+}
+
+/* Small mobile devices */
+@media (max-width: 600px) {
+    .app-main {
+        padding: 1rem 0.8rem;
+    }
+    
+    .app-topbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .tabs {
+        flex-wrap: wrap;
+        gap: 0.3rem;
+    }
+    
+    .tab {
+        padding: 0.6em 0.8em;
+        font-size: 0.85rem;
+    }
+    
+    .section-head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .section-head h2 {
+        font-size: 1.1rem;
+    }
+    
+    .table-search {
+        width: 100%;
+        max-width: none;
+    }
+    
+    .panel {
+        padding: 1.2rem;
+    }
+    
+    #record-dialog {
+        width: 95%;
+        padding: 1.5rem;
+        max-height: 85vh;
+    }
+    
+    .rx-table {
+        font-size: 0.75rem;
+    }
+    
+    .rx-table th,
+    .rx-table td {
+        padding: 0.4rem 0.3rem;
+    }
 }
 
 /* ===================== TAB NAVIGATION ===================== */
